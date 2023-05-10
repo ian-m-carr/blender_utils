@@ -21,6 +21,10 @@ def filtered_distance_from_active(in_x: bool, in_y: bool, in_z: bool, obj) -> ma
 
 
 def distribute_objects(self, in_x: bool, in_y: bool, in_z: bool):
+    if bpy.context.active_object is None:
+        self.report({'INFO'}, "Please ensure you have one active object")
+        return
+
     # obtain the set of selected objects
     selection = bpy.context.selected_objects
 
