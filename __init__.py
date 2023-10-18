@@ -4,6 +4,7 @@ from bpy.app.handlers import persistent
 from bpy.types import Menu
 
 from . import object_distribute
+from . import outliner_tools
 
 bl_info = {
     "name": "(IMC) Blender utils",
@@ -19,11 +20,13 @@ bl_info = {
 }
 
 modules = [
- object_distribute
+    object_distribute,
+    outliner_tools
 ]
 
 classes = [
 ]
+
 
 def reload() -> None:
     global modules
@@ -35,6 +38,7 @@ def reload() -> None:
 _need_reload = "prefs" in locals()
 if _need_reload:
     reload()
+
 
 # ----------------REGISTER--------------.
 
@@ -52,6 +56,7 @@ def register() -> None:
     for cls in classes:
         bpy.utils.register_class(cls)
 
+
 def unregister() -> None:
     if bpy.app.background:
         return
@@ -63,4 +68,4 @@ def unregister() -> None:
             m.unregister()
 
     for cls in classes:
-        bpy.utils. unregister_class(cls)
+        bpy.utils.unregister_class(cls)
